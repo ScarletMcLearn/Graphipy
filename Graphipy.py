@@ -81,15 +81,16 @@ class Graphipy(object):
             pen_size = prop_list[1]
             marker_symbol = prop_list[2]
             marker_symbol_color = prop_list[3]
+            marker_symbol_size = prop_list[4]
 
-            print("X max:", self.x_scale_max, "X Min : ", self.x_scale_min, " Y Max", self.y_scale_max)
-            print("Y Min", self.y_scale_min, "x_coordinate_list", self.x_coordinates)
-            print("y_coordinate_list", self.y_coordinates, "pc=",pen_color, "ps=",pen_size, "ms=", marker_symbol, "msc=", marker_symbol_color)
+            # print("X max:", self.x_scale_max, "X Min : ", self.x_scale_min, " Y Max", self.y_scale_max)
+            # print("Y Min", self.y_scale_min, "x_coordinate_list", self.x_coordinates)
+            # print("y_coordinate_list", self.y_coordinates, "pc=",pen_color, "ps=",pen_size, "ms=", marker_symbol, "msc=", marker_symbol_color)
 
             self.draw(x_max_scale=self.x_scale_max, x_min_scale=self.x_scale_min, y_max_scale=self.y_scale_max,
                       y_min_scale=self.y_scale_min, x_coordinate_list=self.x_coordinates,
                       y_coordinate_list=self.y_coordinates, pc=pen_color, ps=pen_size, ms=marker_symbol,
-                      msc=marker_symbol_color)
+                      msc=marker_symbol_color, msz=marker_symbol_size)
 
         # def draw(self, x_max_scale, x_min_scale, x_coordinate_list, y_max_scale, y_min_scale, y_coordinate_list, pc, ps,
         #          ms, msc):
@@ -133,6 +134,10 @@ class Graphipy(object):
         symbol = input("Your Choice Of Marker: ")
         s = symbol
 
+        print("\nWhat Size Do You Want Your Symbol To Be?")
+
+        msz = int(input("Marker Symbol Size: "))
+
         print('What Color Do You Want Your Symbol To Be?')
         print("Color Choices: ")
         print("\n1) b : blue \ng : Green \nr : Red \n c : Cyan \nm : Magenta \n y : Yello \nk : Black \nw : White")
@@ -141,7 +146,7 @@ class Graphipy(object):
         symbol_color = input("Your Choice Of Symbol Color: ")
         sc = symbol_color
 
-        list_of_props = [lc, lms, s, sc]
+        list_of_props = [lc, lms, s, sc, msz]
 
         return list_of_props
 
@@ -158,13 +163,13 @@ class Graphipy(object):
         return
 
     def draw(self, x_max_scale, x_min_scale, x_coordinate_list, y_max_scale, y_min_scale, y_coordinate_list, pc, ps, ms,
-             msc):
+             msc, msz):
 
         marker = ms + msc
         plt.axis([x_min_scale, x_max_scale, y_min_scale, y_max_scale])
 
         plt.plot(x_coordinate_list, y_coordinate_list, pc, linewidth=ps)
-        plt.plot(x_coordinate_list, y_coordinate_list, marker)
+        plt.plot(x_coordinate_list, y_coordinate_list, marker, markersize=msz)
 
         print("What Do You Want To Label The X-Axis?")
         x_Label = input("X-Axis Label: ")
