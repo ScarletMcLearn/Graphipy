@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import GrapipyExceptions as GE
 
 
 class Graphipy(object):
@@ -24,16 +25,40 @@ class Graphipy(object):
         print("Hello! \nWelcome To Graphify!")
         print("\nWe Are Going To Cook Up A Graph For You Based On Your Coordinates Data. B) :D\n"
               )
-        print("Please Select An Option From The Menu Below On What You Want To Do:")
-        print("1) Graphify! : Make New Graph")
-        print("2) Exit.\n")
 
-        user_input = input("Please Enter Your Choice. :)\n")
+
+        # print("Please Select An Option From The Menu Below On What You Want To Do:")
+        # print("1) Graphify! : Make New Graph")
+        # print("2) Exit.\n")
+        #
+        # user_input = input("Please Enter Your Choice. :)\n")
+        #
+        # self.user_choice = user_input
+        #
+        # # print("User input and choice are : " + user_input + " " + self.user_choice)
+        # return user_input
+
+        while (True):
+            try:
+                print("Please Select An Option From The Menu Below On What You Want To Do:")
+                print("1) Graphify! : Make New Graph")
+                print("2) Exit.\n")
+
+                user_input = input("Please Enter Your Choice. :)\n")
+
+                if not (user_input == "1" or user_input == "2"):
+                    raise GE.InvalidOptionError
+
+                break
+
+            except GE.InvalidOptionError:
+                print("\nDid You Read The Options?\nYour Input Is Not There.\nPlease Try Again.")
 
         self.user_choice = user_input
 
-        # print("User input and choice are : " + user_input + " " + self.user_choice)
+            # print("User input and choice are : " + user_input + " " + self.user_choice)
         return user_input
+
 
     # second - process, after initiated
     def process(self, p):
